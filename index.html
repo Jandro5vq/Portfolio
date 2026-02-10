@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Alejandro Vazquez - Full Stack Developer. Building the web, one pixel at a time." />
+  <title>Alejandro Vazquez | Full Stack Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+  <!-- Three.js Background Canvas -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- CRT Scanline Overlay -->
+  <div class="crt-overlay" aria-hidden="true"></div>
+
+  <!-- Scan beam (animated horizontal line) -->
+  <div class="scan-beam" aria-hidden="true"></div>
+
+  <main class="terminal-wrapper">
+
+    <!-- ===== HERO ===== -->
+    <section id="hero" class="section">
+      <div class="hero-content">
+        <div class="hero-header">
+          <pre class="ascii-art" aria-label="VAZQUEZ">
+    ___    __    ______    _____    _   ______  ____  ____ 
+   /   |  / /   / ____/   / /   |  / | / / __ \/ __ \/ __ \
+  / /| | / /   / __/ __  / / /| | /  |/ / / / / /_/ / / / /
+ / ___ |/ /___/ /___/ /_/ / ___ |/ /|  / /_/ / _, _/ /_/ / 
+/_/  |_/_____/_____/\____/_/  |_/_/ |_/_____/_/ |_|\____/  
+                                                           
+           </pre>
+        </div>
+        <div class="hero-subtitle">
+          <span class="prompt">&gt;</span>
+          <span id="hero-typing" class="typing-target"></span><span class="cursor">_</span>
+        </div>
+        <p class="hero-hint">[scroll down or use navigation]</p>
+      </div>
+    </section>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav id="nav" class="nav-bar">
+      <ul class="nav-list">
+        <li><a href="#about"><span class="nav-prefix">&gt;</span> about</a></li>
+        <li><a href="#skills"><span class="nav-prefix">&gt;</span> skills</a></li>
+        <li><a href="#contact"><span class="nav-prefix">&gt;</span> contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- ===== ABOUT ===== -->
+    <section id="about" class="section fade-in">
+      <div class="terminal-window">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          </div>
+          <span class="terminal-title">~/about</span>
+        </div>
+        <div class="terminal-body">
+          <img src="/logo.png" alt="Alejandro Vazquez logo" class="about-logo" />
+          <p class="cmd-line"><span class="prompt">$</span> cat about.txt</p>
+          <div class="cmd-output">
+            <p>Hello world. I'm <strong>Alejandro Vazquez</strong>, a full-stack</p>
+            <p>developer passionate about how technology evolves.</p>
+            <br />
+            <p>I build web applications and design microservices</p>
+            <p>to integrate AI solutions into real products.</p>
+            <br />
+            <p>Deeply curious about robotics, IoT, and artificial</p>
+            <p>intelligence. Always chasing the next breakthrough.</p>
+          </div>
+          <br />
+          <p class="cmd-line"><span class="prompt">$</span> cat status.json</p>
+          <div class="cmd-output json-block">
+            <p>{</p>
+            <p>&nbsp;&nbsp;"status": <span class="str">"Currently employed"</span>,</p>
+            <p>&nbsp;&nbsp;"role": <span class="str">"Full Stack Developer"</span>,</p>
+            <p>&nbsp;&nbsp;"location": <span class="str">"Remote / Spain"</span>,</p>
+            <p>&nbsp;&nbsp;"focus": <span class="str">"AI microservices"</span>,</p>
+            <p>&nbsp;&nbsp;"coffeeLevel": <span class="num">98</span></p>
+            <p>}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SKILLS ===== -->
+    <section id="skills" class="section fade-in">
+      <div class="terminal-window">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          </div>
+          <span class="terminal-title">~/skills</span>
+        </div>
+        <div class="terminal-body">
+          <p class="cmd-line"><span class="prompt">$</span> ls -la ./skills/</p>
+          <div class="cmd-output">
+            <div class="skill-group">
+              <span class="skill-label">drwxr-xr-x frontend/</span>
+              <div class="skill-tags">
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">Vue</span>
+                <span class="skill-tag">HTML/CSS</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <span class="skill-label">drwxr-xr-x backend/</span>
+              <div class="skill-tags">
+                <span class="skill-tag">Node.js</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">PostgreSQL</span>
+                <span class="skill-tag">Redis</span>
+                <span class="skill-tag">REST</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <span class="skill-label">drwxr-xr-x devops/</span>
+              <div class="skill-tags">
+                <span class="skill-tag">Docker</span>
+                <span class="skill-tag">Linux</span>
+                <span class="skill-tag">Git</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" class="section fade-in">
+      <div class="terminal-window">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          </div>
+          <span class="terminal-title">~/contact</span>
+        </div>
+        <div class="terminal-body">
+          <p class="cmd-line"><span class="prompt">$</span> cat contact.sh</p>
+          <div class="cmd-output">
+            <div class="contact-block">
+              <p class="contact-line"><span class="contact-key">email</span> <span class="contact-sep">=</span>
+                alejandro.v.quintano@gmail.com</p>
+              <p class="contact-line"><span class="contact-key">github</span> <span class="contact-sep">=</span> <a
+                  href="https://github.com/Jandro5vq">github.com/Jandro5vq</a></p>
+            </div>
+          </div>
+          <br />
+          <p class="cmd-line"><span class="prompt">$</span> echo "Let's build something together"</p>
+          <div class="cmd-output">
+            <p>Let's build something together</p>
+          </div>
+          <br />
+          <a href="mailto:alejandro.v.quintano@gmail.com" class="cta-button">
+            <span class="prompt">$</span> send_message
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+      <pre class="footer-art">
+========================================
+  Built with pixels, caffeine &amp; vim
+  &copy; 2026 Alejandro Vazquez
+========================================
+        </pre>
+    </footer>
+
+  </main>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
