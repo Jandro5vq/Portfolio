@@ -1,186 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/png" href="/logo.png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Alejandro Vazquez - Full Stack Developer. Building the web, one pixel at a time." />
-  <title>Alejandro Vazquez | Full Stack Developer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
-    rel="stylesheet" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>La hoguera de Alejandro</title>
+<meta name="description" content="Portfolio de Alejandro Vázquez Quintano: un bosque de noche, una hoguera y cinco viajeros que cuentan quién soy.">
+<meta name="theme-color" content="#05070d">
+<meta property="og:title" content="La hoguera de Alejandro">
+<meta property="og:description" content="Un portfolio interactivo: sigue la música y reúne a cinco viajeros junto al fuego.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2305070d'/%3E%3Cpath d='M32 10c4 10 14 15 14 28a14 14 0 0 1-28 0c0-7 4-11 7-15 1 5 3 7 5 8 0-8-2-14 2-21z' fill='%23ff9b42'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Martian+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<!-- Orden: contenido → ajustes → audio → app. "defer" no bloquea el primer pintado y funciona también abriendo el archivo directamente. -->
+<script defer src="js/content.js"></script>
+<script defer src="js/settings.js"></script>
+<script defer src="js/audio.js"></script>
+<script defer src="js/app.js"></script>
 </head>
+<body data-phase="intro">
 
-<body>
-  <!-- Three.js Background Canvas -->
-  <canvas id="bg-canvas"></canvas>
+<canvas id="scene" data-i18n-aria="scene" aria-label="Bosque de noche con una hoguera. Usa las flechas para mirar alrededor."></canvas>
 
-  <!-- CRT Scanline Overlay -->
-  <div class="crt-overlay" aria-hidden="true"></div>
+<header class="top ui">
+  <a class="brand home-link" href="./" data-i18n-title="home" title="Volver al inicio"><small data-i18n="eyebrow">Portfolio</small><strong id="brand-name">Alejandro Vázquez Quintano</strong></a>
+  <div class="actions">
+    <button class="btn lang-toggle" type="button" lang="en" aria-label="Read in English">EN</button>
+    <button class="btn" id="btn-classic" type="button"><span class="long" data-i18n="classic">Versión clásica</span><span class="short" data-i18n="classicShort">Clásica</span></button>
+    <button class="btn" id="btn-sound" type="button" aria-pressed="true"></button>
+    <label class="btn vol" for="vol"><span data-i18n="volume">Volumen</span><input type="range" id="vol" min="0" max="100" step="1" value="25"><output id="vol-out" for="vol">25</output></label>
+  </div>
+</header>
 
-  <!-- Scan beam (animated horizontal line) -->
-  <div class="scan-beam" aria-hidden="true"></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<button class="edge ui" id="edge-left" type="button" tabindex="-1">◂ <span></span></button>
+<button class="edge ui" id="edge-right" type="button" tabindex="-1"><span></span> ▸</button>
 
-  <main class="terminal-wrapper">
+<section id="hud" class="ui" data-i18n-aria="radio" aria-label="Radio de señales">
+  <div class="scope-wrap"><canvas id="scope" width="560" height="104"></canvas></div>
+  <div class="scope-label"><span data-i18n="tuning">Sintonía</span><b id="tuned-name"></b></div>
+  <ol id="signals"></ol>
+  <div class="count"><span data-i18n="atFire">Junto al fuego</span><span><b id="count">0</b> / <span id="total">5</span></span></div>
+</section>
 
-    <!-- ===== HERO ===== -->
-    <section id="hero" class="section">
-      <div class="hero-content">
-        <div class="hero-header">
-          <pre class="ascii-art" aria-label="VAZQUEZ">
-    ___    __    ______    _____    _   ______  ____  ____ 
-   /   |  / /   / ____/   / /   |  / | / / __ \/ __ \/ __ \
-  / /| | / /   / __/ __  / / /| | /  |/ / / / / /_/ / / / /
- / ___ |/ /___/ /___/ /_/ / ___ |/ /|  / /_/ / _, _/ /_/ / 
-/_/  |_/_____/_____/\____/_/  |_/_/ |_/_____/_/ |_|\____/  
-                                                           
-           </pre>
-        </div>
-        <div class="hero-subtitle">
-          <span class="prompt">&gt;</span>
-          <span id="hero-typing" class="typing-target"></span><span class="cursor">_</span>
-        </div>
-        <p class="hero-hint">[scroll down or use navigation]</p>
-      </div>
-    </section>
+<p id="help" class="ui" data-i18n-html="help">Arrastra o <kbd>←</kbd> <kbd>→</kbd> para mirar · <kbd>1</kbd>–<kbd id="help-max">5</kbd> sintoniza<br><kbd>Enter</kbd> habla con quien tengas delante · <kbd>+</kbd> <kbd>−</kbd> volumen</p>
 
-    <!-- ===== NAVIGATION ===== -->
-    <nav id="nav" class="nav-bar">
-      <ul class="nav-list">
-        <li><a href="#about"><span class="nav-prefix">&gt;</span> about</a></li>
-        <li><a href="#skills"><span class="nav-prefix">&gt;</span> skills</a></li>
-        <li><a href="#contact"><span class="nav-prefix">&gt;</span> contact</a></li>
-      </ul>
-    </nav>
+<button id="btn-talk" class="btn ui" type="button" hidden></button>
+<button id="btn-enter" class="btn primary" type="button" hidden></button>
 
-    <!-- ===== ABOUT ===== -->
-    <section id="about" class="section fade-in">
-      <div class="terminal-window">
-        <div class="terminal-header">
-          <div class="terminal-dots">
-            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-          </div>
-          <span class="terminal-title">~/about</span>
-        </div>
-        <div class="terminal-body">
-          <img src="/logo.png" alt="Alejandro Vazquez logo" class="about-logo" />
-          <p class="cmd-line"><span class="prompt">$</span> cat about.txt</p>
-          <div class="cmd-output">
-            <p>Hello world. I'm <strong>Alejandro Vazquez</strong>, a full-stack</p>
-            <p>developer passionate about how technology evolves.</p>
-            <br />
-            <p>I build web applications and design microservices</p>
-            <p>to integrate AI solutions into real products.</p>
-            <br />
-            <p>Deeply curious about robotics, IoT, and artificial</p>
-            <p>intelligence. Always chasing the next breakthrough.</p>
-          </div>
-          <br />
-          <p class="cmd-line"><span class="prompt">$</span> cat status.json</p>
-          <div class="cmd-output json-block">
-            <p>{</p>
-            <p>&nbsp;&nbsp;"status": <span class="str">"Currently employed"</span>,</p>
-            <p>&nbsp;&nbsp;"role": <span class="str">"Full Stack Developer"</span>,</p>
-            <p>&nbsp;&nbsp;"location": <span class="str">"Remote / Spain"</span>,</p>
-            <p>&nbsp;&nbsp;"focus": <span class="str">"AI microservices"</span>,</p>
-            <p>&nbsp;&nbsp;"coffeeLevel": <span class="num">98</span></p>
-            <p>}</p>
-          </div>
-        </div>
-      </div>
-    </section>
+<div id="panel" role="dialog" aria-labelledby="panel-name" hidden>
+  <div class="panel-head">
+    <p class="eyebrow" id="panel-freq"></p>
+    <h2 id="panel-name" tabindex="-1"></h2>
+    <p class="greet" id="panel-greet"></p>
+  </div>
+  <div class="panel-body content">
+    <h3 id="panel-section"></h3>
+    <div id="panel-content"></div>
+  </div>
+  <div class="panel-foot">
+    <button class="btn primary" id="panel-join" type="button"></button>
+    <button class="btn" id="panel-close" type="button"></button>
+  </div>
+</div>
 
-    <!-- ===== SKILLS ===== -->
-    <section id="skills" class="section fade-in">
-      <div class="terminal-window">
-        <div class="terminal-header">
-          <div class="terminal-dots">
-            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-          </div>
-          <span class="terminal-title">~/skills</span>
-        </div>
-        <div class="terminal-body">
-          <p class="cmd-line"><span class="prompt">$</span> ls -la ./skills/</p>
-          <div class="cmd-output">
-            <div class="skill-group">
-              <span class="skill-label">drwxr-xr-x frontend/</span>
-              <div class="skill-tags">
-                <span class="skill-tag">JavaScript</span>
-                <span class="skill-tag">Vue</span>
-                <span class="skill-tag">HTML/CSS</span>
-              </div>
-            </div>
-            <div class="skill-group">
-              <span class="skill-label">drwxr-xr-x backend/</span>
-              <div class="skill-tags">
-                <span class="skill-tag">Node.js</span>
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">PostgreSQL</span>
-                <span class="skill-tag">Redis</span>
-                <span class="skill-tag">REST</span>
-              </div>
-            </div>
-            <div class="skill-group">
-              <span class="skill-label">drwxr-xr-x devops/</span>
-              <div class="skill-tags">
-                <span class="skill-tag">Docker</span>
-                <span class="skill-tag">Linux</span>
-                <span class="skill-tag">Git</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+<div id="intro">
+  <div class="intro-inner">
+    <h1 id="intro-title"></h1>
+    <p class="lede" id="intro-lede"></p>
+    <div class="intro-actions">
+      <button class="btn primary" id="btn-start" type="button"></button>
+      <button class="btn" id="btn-start-classic" type="button"></button>
+    </div>
+    <p class="intro-note" id="intro-note"></p>
+    <noscript><p class="intro-note">Esta página necesita JavaScript para encender la hoguera.</p></noscript>
+  </div>
+</div>
 
-    <!-- ===== CONTACT ===== -->
-    <section id="contact" class="section fade-in">
-      <div class="terminal-window">
-        <div class="terminal-header">
-          <div class="terminal-dots">
-            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-          </div>
-          <span class="terminal-title">~/contact</span>
-        </div>
-        <div class="terminal-body">
-          <p class="cmd-line"><span class="prompt">$</span> cat contact.sh</p>
-          <div class="cmd-output">
-            <div class="contact-block">
-              <p class="contact-line"><span class="contact-key">email</span> <span class="contact-sep">=</span>
-                alejandro.v.quintano@gmail.com</p>
-              <p class="contact-line"><span class="contact-key">github</span> <span class="contact-sep">=</span> <a
-                  href="https://github.com/Jandro5vq">github.com/Jandro5vq</a></p>
-            </div>
-          </div>
-          <br />
-          <p class="cmd-line"><span class="prompt">$</span> echo "Let's build something together"</p>
-          <div class="cmd-output">
-            <p>Let's build something together</p>
-          </div>
-          <br />
-          <a href="mailto:alejandro.v.quintano@gmail.com" class="cta-button">
-            <span class="prompt">$</span> send_message
-          </a>
-        </div>
-      </div>
-    </section>
+<div id="classic" hidden>
+  <div class="classic-close"><button class="btn lang-toggle" type="button" lang="en" aria-label="Read in English">EN</button><button class="btn" id="classic-close" type="button"></button></div>
+  <div class="classic-inner" id="classic-inner"></div>
+</div>
 
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer">
-      <pre class="footer-art">
-========================================
-  Built with pixels, caffeine &amp; vim
-  &copy; 2026 Alejandro Vazquez
-========================================
-        </pre>
-    </footer>
+<div id="ending" hidden>
+  <div class="ending-card">
+    <p class="eyebrow" id="ending-eyebrow"></p>
+    <h2 id="ending-title"></h2>
+    <p id="ending-text"></p>
+    <div id="ending-contact"></div>
+    <button class="btn again" id="btn-again" type="button"></button>
+    <p class="credit" id="ending-credit"></p>
+  </div>
+</div>
 
-  </main>
-
-  <script type="module" src="/src/main.js"></script>
 </body>
-
 </html>
