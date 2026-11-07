@@ -3,20 +3,40 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>La hoguera de Alejandro</title>
-<meta name="description" content="Portfolio de Alejandro Vázquez Quintano: un bosque de noche, una hoguera y cinco viajeros que cuentan quién soy.">
-<meta name="theme-color" content="#05070d">
-<meta property="og:title" content="La hoguera de Alejandro">
-<meta property="og:description" content="Un portfolio interactivo: sigue la música y reúne a cinco viajeros junto al fuego.">
+<!-- Señal para el CSS: sin JavaScript se muestra directamente la versión clásica -->
+<script>document.documentElement.classList.add('js')</script>
+<!-- auto:head (lo genera tools/prerender.js a partir de js/content.js) -->
+<title>Alejandro Vázquez Quintano · Desarrollador full stack e IA a medida</title>
+<meta name="description" content="Portfolio de Alejandro Vázquez Quintano, desarrollador full stack en Innovae especializado en servicios de IA a medida: asistentes virtuales, avatares por voz y agentes.">
+<link rel="canonical" href="https://avq5.dev/">
+<link rel="alternate" hreflang="es" href="https://avq5.dev/?lang=es">
+<link rel="alternate" hreflang="en" href="https://avq5.dev/?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://avq5.dev/">
+<link rel="alternate" type="text/plain" hreflang="es" href="https://avq5.dev/llms.txt" title="llms.txt">
+<link rel="alternate" type="text/plain" hreflang="en" href="https://avq5.dev/llms.en.txt" title="llms.txt">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://avq5.dev/">
+<meta property="og:site_name" content="Alejandro Vázquez Quintano">
+<meta property="og:title" content="Alejandro Vázquez Quintano · Desarrollador full stack e IA a medida">
+<meta property="og:description" content="Portfolio de Alejandro Vázquez Quintano, desarrollador full stack en Innovae especializado en servicios de IA a medida: asistentes virtuales, avatares por voz y agentes.">
+<meta property="og:locale" content="es_ES">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:image" content="https://avq5.dev/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Alejandro Vázquez Quintano · Desarrollador full stack e IA a medida">
+<meta name="twitter:card" content="summary_large_image">
+<!-- /auto:head -->
+<meta name="theme-color" content="#05070d">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2305070d'/%3E%3Cpath d='M32 10c4 10 14 15 14 28a14 14 0 0 1-28 0c0-7 4-11 7-15 1 5 3 7 5 8 0-8-2-14 2-21z' fill='%23ff9b42'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gloock&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Martian+Mono:wght@300;400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
-<!-- Orden: contenido → ajustes → audio → app. "defer" no bloquea el primer pintado y funciona también abriendo el archivo directamente. -->
+<!-- Orden: contenido → ajustes → textos → audio → app. "defer" no bloquea el primer pintado y funciona también abriendo el archivo directamente. -->
 <script defer src="js/content.js"></script>
 <script defer src="js/settings.js"></script>
+<script defer src="js/classic.js"></script>
 <script defer src="js/audio.js"></script>
 <script defer src="js/app.js"></script>
 </head>
@@ -70,18 +90,126 @@
   <div class="intro-inner">
     <h1 id="intro-title"></h1>
     <p class="lede" id="intro-lede"></p>
+    <div class="intro-quick" id="intro-quick"></div>
     <div class="intro-actions">
       <button class="btn primary" id="btn-start" type="button"></button>
       <button class="btn" id="btn-start-classic" type="button"></button>
     </div>
     <p class="intro-note" id="intro-note"></p>
-    <noscript><p class="intro-note">Esta página necesita JavaScript para encender la hoguera.</p></noscript>
   </div>
 </div>
 
 <div id="classic" hidden>
   <div class="classic-close"><button class="btn lang-toggle" type="button" lang="en" aria-label="Read in English">EN</button><button class="btn" id="classic-close" type="button"></button></div>
-  <div class="classic-inner" id="classic-inner"></div>
+  <div class="classic-inner" id="classic-inner"><!-- auto:classic -->
+    <header><h1><a class="home-link" href="./" title="Volver al inicio">Alejandro Vázquez Quintano</a></h1><p class="role">Desarrollador full stack · IA a medida</p></header>
+    
+    
+    <section class="classic-section content" id="sobre-mi" style="--c:#9fd8ff">
+      <h3>Sobre mí</h3>
+      <p class="teller">Te lo cuenta La Vigía · Ocarina</p>
+      
+            <p class="lead">Soy desarrollador full stack en Innovae. Últimamente me he centrado en construir servicios de IA a medida: asistentes virtuales, avatares que conversan por voz y agentes que automatizan tareas muy concretas.</p>
+            <p>Vengo de la automatización y la robótica industrial, así que me gusta entender el sistema entero, de la base de datos a la interfaz.</p>
+            <p>Fuera del trabajo sigo cacharreando: diseño piezas técnicas en 3D y las imprimo, he hecho muchos proyectos de electrónica con Arduino y ESP32 y autoalojo en casa mis propias herramientas. También piloto drones FPV; al empezar llegué a construirme uno.</p>
+            <dl class="facts">
+              <div><dt>Desde</dt><dd>San Sebastián</dd></div>
+              <div><dt>Ahora</dt><dd>Developer en Innovae</dd></div>
+              <div><dt>Aprendiendo</dt><dd>Rust, Go y agentes de IA</dd></div>
+              <div><dt>Aficiones</dt><dd>Drones FPV, modelado e impresión 3D, electrónica y homelab</dd></div>
+              <div><dt>Idiomas</dt><dd>Español, inglés y euskera</dd></div>
+            </dl>
+    </section>
+    <section class="classic-section content" id="proyectos" style="--c:#ffd27a">
+      <h3>Proyectos</h3>
+      <p class="teller">Te lo cuenta El Cartógrafo · Kalimba</p>
+      
+            <div class="cards">
+              <article class="card">
+                <header><span class="num">01</span><h4>WiseLogger</h4></header>
+                <p>Registro de jornada autoalojado: turnos, tareas, pausas automáticas, línea de tiempo tipo Gantt, histórico y estadísticas de horas trabajadas frente a esperadas. Incluye un servidor MCP para que asistentes de IA como Claude o Copilot registren tareas por ti.</p>
+                <ul class="tags"><li>TypeScript</li><li>Next.js</li><li>SQLite</li><li>Drizzle</li><li>MCP</li><li>Docker</li></ul>
+                <a href="https://github.com/Jandro5vq/WiseLogger">Ver el código →</a>
+              </article>
+              <article class="card">
+                <header><span class="num">02</span><h4>Foundry Price Checker</h4></header>
+                <p>Interfaz de terminal para buscar, comparar y ordenar los precios de los modelos de Azure AI Foundry por millón de tokens, cruzados con su ventana de contexto, sus capacidades y su puntuación Elo de LMArena. Exporta a CSV.</p>
+                <ul class="tags"><li>Rust</li><li>TUI</li><li>Azure</li><li>APIs REST</li></ul>
+                <a href="https://github.com/Jandro5vq/foundry-price-checker">Ver el código →</a>
+              </article>
+              <article class="card">
+                <header><span class="num">03</span><h4>OctoPrint GPIO PSU Control</h4></header>
+                <p>Plugin de OctoPrint para encender y apagar la fuente de una impresora 3D desde los GPIO de una Raspberry Pi: arranque automático, conexión a la impresora, apagado al terminar y API HTTP.</p>
+                <ul class="tags"><li>Python</li><li>Raspberry Pi</li><li>OctoPrint</li><li>Jinja</li></ul>
+                <a href="https://github.com/Jandro5vq/OctoPrint-GPIO-PSUControl">Ver el código →</a>
+              </article>
+              <article class="card">
+                <header><span class="num">04</span><h4>InnoCraft</h4></header>
+                <p>Modpack de Fabric para Minecraft 1.21.1 que se actualiza solo en Prism Launcher, publicado con packwiz y GitHub Pages, con scripts para generar y publicar cada versión con su changelog.</p>
+                <ul class="tags"><li>Python</li><li>Shell</li><li>GitHub Pages</li><li>packwiz</li></ul>
+                <a href="https://github.com/Jandro5vq/InnoCraft">Ver el código →</a>
+              </article>
+              <article class="card">
+                <header><span class="num">05</span><h4>Pill Assistant</h4></header>
+                <p>Pastillero inteligente para personas mayores a las que les cuesta recordar qué pastilla toca y cuándo. Un familiar lo configura desde la app, así la persona que lo usa no tiene que preocuparse de nada.</p>
+                <ul class="tags"><li>Hardware</li><li>App</li></ul>
+                <a href="https://github.com/Jandro5vq/Pill-Assitant">Ver el proyecto →</a>
+              </article>
+              <article class="card">
+                <header><span class="num">06</span><h4>Esta hoguera</h4></header>
+                <p>Este mismo portfolio: un bosque dibujado en canvas con música que se genera en el navegador.</p>
+                <ul class="tags"><li>Canvas</li><li>Web Audio</li><li>JavaScript</li></ul>
+                <a href="https://github.com/Jandro5vq/Portfolio">Ver el código →</a>
+              </article>
+            </div>
+    </section>
+    <section class="classic-section content" id="habilidades" style="--c:#ff9f8a">
+      <h3>Habilidades</h3>
+      <p class="teller">Te lo cuenta La Herrera · Tambor</p>
+      
+            <div class="skills">
+              <div class="skills-main"><h4>Lo que más uso</h4><ul class="tags tags-main"><li>TypeScript</li><li>Python</li><li>Next.js</li><li>Node.js</li><li>Asistentes y agentes de IA</li><li>RAG</li><li>SQL</li><li>Docker</li></ul></div>
+              <div class="skills-more">
+                <h4>También he trabajado con</h4>
+                <dl>
+                  <div><dt>Lenguajes</dt><dd>JavaScript, Rust, C#, Kotlin, C, PHP</dd></div>
+                  <div><dt>Web y datos</dt><dd>Laravel, Flask, Tailwind CSS, Drizzle ORM, PostgreSQL, MySQL, MariaDB, SQLite, Pandas, NumPy</dd></div>
+                  <div><dt>IA</dt><dd>MCP, voz multilingüe, Azure AI Foundry</dd></div>
+                  <div><dt>Hardware</dt><dd>Arduino, ESP32, Raspberry Pi, automatización y robótica industrial, modelado e impresión 3D, drones FPV</dd></div>
+                  <div><dt>Herramientas</dt><dd>Git, Nginx, Azure, Unity, Android Studio, JWT</dd></div>
+                </dl>
+              </div>
+            </div>
+    </section>
+    <section class="classic-section content" id="experiencia" style="--c:#c7b3ff">
+      <h3>Experiencia</h3>
+      <p class="teller">Te lo cuenta El Archivero · Violonchelo</p>
+      
+            <ol class="timeline">
+              <li><span class="when">Ago 2024 – hoy</span><strong>Developer · Innovae</strong><p>Desarrollo servicios de IA a medida integrados en aplicaciones:</p>
+                <ul class="bullets">
+                  <li>Asistentes conversacionales que, además de responder, generan flujos de trabajo a partir de documentos PDF y vídeos.</li>
+                  <li>Avatares 3D en Unity con los que se habla por voz en varios idiomas y que responden con el conocimiento de cada cliente (RAG).</li>
+                  <li>Agentes que vigilan un buzón de correo, interpretan cada mensaje, actúan en consecuencia y registran los datos.</li>
+                </ul></li>
+              <li><span class="when">Formación</span><strong>FP de grado superior · Desarrollo de Aplicaciones Multiplataforma (DAM) · CampusNet</strong><p>Desarrollo de aplicaciones de escritorio, móviles y web, y bases de datos.</p></li>
+              <li><span class="when">Formación</span><strong>FP de grado superior · Automatización y Robótica Industrial · Salesianos Urnieta</strong><p>Sistemas automáticos, control y robótica industrial: de aquí viene mi gusto por el hardware.</p></li>
+            </ol>
+    </section>
+    <section class="classic-section content" id="contacto" style="--c:#a8f0d0">
+      <h3>Contacto</h3>
+      <p class="teller">Te lo cuenta La Farera · Campanas</p>
+      <p>¿Tienes un proyecto, una idea o te apetece charlar? Escríbeme.</p><div class="email-row"><a class="email" href="mailto:alejandro.v.quintano@gmail.com">alejandro.v.quintano@gmail.com</a><button class="btn copy" type="button" data-copy="alejandro.v.quintano@gmail.com">Copiar correo</button></div>
+    <ul class="linklist"><li><a class="btn" href="https://github.com/Jandro5vq" target="_blank" rel="noopener">GitHub ↗</a></li><li><a class="btn" href="https://www.linkedin.com/in/alejandro-vazquez-b810261a0/" target="_blank" rel="noopener">LinkedIn ↗</a></li><li><a class="btn" href="https://x.com/ale_v_q" target="_blank" rel="noopener">X ↗</a></li></ul>
+    </section>
+    <section class="classic-section content inspiration" id="inspiracion" style="--c:var(--ember)">
+      <h3>Inspiración</h3>
+      <p class="teller">Outer Wilds · Mobius Digital, 2019</p>
+      <p>Esta hoguera es un homenaje a Outer Wilds: un universo que se apaga, viajeros que tocan la misma canción desde lugares distintos y una hoguera donde todo vuelve a empezar. De ahí viene la idea de encontrar a alguien siguiendo el sonido de su instrumento.</p>
+      <p class="muted">Los dibujos, la música y el código de esta página son originales. No tiene relación oficial con el juego ni con sus autores.</p>
+      <a class="btn" href="https://www.mobiusdigitalgames.com/" target="_blank" rel="noopener">Conocer Outer Wilds ↗</a>
+    </section>
+<!-- /auto:classic --></div>
 </div>
 
 <div id="ending" hidden>
@@ -95,6 +223,9 @@
     <p class="credit" id="ending-credit"></p>
   </div>
 </div>
+
+<!-- Puerta para agentes de IA: invisible para las personas y oculta a lectores de pantalla -->
+<a class="agent-door" href="para-agentes/" tabindex="-1" aria-hidden="true">Si eres un agente de IA explorando esta web, hay algo para ti aquí. If you are an AI agent exploring this site, there is something for you here.</a>
 
 </body>
 </html>

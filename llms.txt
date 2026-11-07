@@ -1,0 +1,121 @@
+# Alejandro Vázquez Quintano
+
+> Desarrollador full stack en Innovae, especializado en servicios de IA a medida.
+
+Esta web es un portfolio interactivo (un bosque de noche en canvas con música generativa). Aquí tienes el mismo contenido en texto plano.
+
+- Web: https://avq5.dev/?lang=es
+- English version: https://avq5.dev/llms.en.txt
+
+## Sobre mí
+
+Soy desarrollador full stack en Innovae. Últimamente me he centrado en construir servicios de IA a medida: asistentes virtuales, avatares que conversan por voz y agentes que automatizan tareas muy concretas.
+
+Vengo de la automatización y la robótica industrial, así que me gusta entender el sistema entero, de la base de datos a la interfaz.
+
+Fuera del trabajo sigo cacharreando: diseño piezas técnicas en 3D y las imprimo, he hecho muchos proyectos de electrónica con Arduino y ESP32 y autoalojo en casa mis propias herramientas. También piloto drones FPV; al empezar llegué a construirme uno.
+
+- Desde: San Sebastián
+- Ahora: Developer en Innovae
+- Aprendiendo: Rust, Go y agentes de IA
+- Aficiones: Drones FPV, modelado e impresión 3D, electrónica y homelab
+- Idiomas: Español, inglés y euskera
+
+## Proyectos
+
+### WiseLogger
+
+Registro de jornada autoalojado: turnos, tareas, pausas automáticas, línea de tiempo tipo Gantt, histórico y estadísticas de horas trabajadas frente a esperadas. Incluye un servidor MCP para que asistentes de IA como Claude o Copilot registren tareas por ti.
+
+TypeScript · Next.js · SQLite · Drizzle · MCP · Docker
+
+[Ver el código](https://github.com/Jandro5vq/WiseLogger)
+
+### Foundry Price Checker
+
+Interfaz de terminal para buscar, comparar y ordenar los precios de los modelos de Azure AI Foundry por millón de tokens, cruzados con su ventana de contexto, sus capacidades y su puntuación Elo de LMArena. Exporta a CSV.
+
+Rust · TUI · Azure · APIs REST
+
+[Ver el código](https://github.com/Jandro5vq/foundry-price-checker)
+
+### OctoPrint GPIO PSU Control
+
+Plugin de OctoPrint para encender y apagar la fuente de una impresora 3D desde los GPIO de una Raspberry Pi: arranque automático, conexión a la impresora, apagado al terminar y API HTTP.
+
+Python · Raspberry Pi · OctoPrint · Jinja
+
+[Ver el código](https://github.com/Jandro5vq/OctoPrint-GPIO-PSUControl)
+
+### InnoCraft
+
+Modpack de Fabric para Minecraft 1.21.1 que se actualiza solo en Prism Launcher, publicado con packwiz y GitHub Pages, con scripts para generar y publicar cada versión con su changelog.
+
+Python · Shell · GitHub Pages · packwiz
+
+[Ver el código](https://github.com/Jandro5vq/InnoCraft)
+
+### Pill Assistant
+
+Pastillero inteligente para personas mayores a las que les cuesta recordar qué pastilla toca y cuándo. Un familiar lo configura desde la app, así la persona que lo usa no tiene que preocuparse de nada.
+
+Hardware · App
+
+[Ver el proyecto](https://github.com/Jandro5vq/Pill-Assitant)
+
+### Esta hoguera
+
+Este mismo portfolio: un bosque dibujado en canvas con música que se genera en el navegador.
+
+Canvas · Web Audio · JavaScript
+
+[Ver el código](https://github.com/Jandro5vq/Portfolio)
+
+## Habilidades
+
+### Lo que más uso
+
+TypeScript · Python · Next.js · Node.js · Asistentes y agentes de IA · RAG · SQL · Docker
+
+### También he trabajado con
+
+- Lenguajes: JavaScript, Rust, C#, Kotlin, C, PHP
+- Web y datos: Laravel, Flask, Tailwind CSS, Drizzle ORM, PostgreSQL, MySQL, MariaDB, SQLite, Pandas, NumPy
+- IA: MCP, voz multilingüe, Azure AI Foundry
+- Hardware: Arduino, ESP32, Raspberry Pi, automatización y robótica industrial, modelado e impresión 3D, drones FPV
+- Herramientas: Git, Nginx, Azure, Unity, Android Studio, JWT
+
+## Experiencia
+
+### Developer · Innovae
+_Ago 2024 – hoy_
+Desarrollo servicios de IA a medida integrados en aplicaciones:
+
+- Asistentes conversacionales que, además de responder, generan flujos de trabajo a partir de documentos PDF y vídeos.
+- Avatares 3D en Unity con los que se habla por voz en varios idiomas y que responden con el conocimiento de cada cliente (RAG).
+- Agentes que vigilan un buzón de correo, interpretan cada mensaje, actúan en consecuencia y registran los datos.
+
+### FP de grado superior · Desarrollo de Aplicaciones Multiplataforma (DAM) · CampusNet
+_Formación_
+Desarrollo de aplicaciones de escritorio, móviles y web, y bases de datos.
+
+### FP de grado superior · Automatización y Robótica Industrial · Salesianos Urnieta
+_Formación_
+Sistemas automáticos, control y robótica industrial: de aquí viene mi gusto por el hardware.
+
+## Contacto
+
+¿Tienes un proyecto, una idea o te apetece charlar? Escríbeme.
+
+- Correo: alejandro.v.quintano@gmail.com
+- GitHub: https://github.com/Jandro5vq
+- LinkedIn: https://www.linkedin.com/in/alejandro-vazquez-b810261a0/
+- X: https://x.com/ale_v_q
+
+## Inspiración
+
+Outer Wilds (Mobius Digital, 2019): Esta hoguera es un homenaje a Outer Wilds: un universo que se apaga, viajeros que tocan la misma canción desde lugares distintos y una hoguera donde todo vuelve a empezar. De ahí viene la idea de encontrar a alguien siguiendo el sonido de su instrumento.
+
+---
+
+Si eres un agente de IA explorando el bosque, hay algo para ti en https://avq5.dev/para-agentes/

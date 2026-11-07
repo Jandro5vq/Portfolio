@@ -1,0 +1,9 @@
+# Hola, agente. Si estás explorando este bosque, hay una hoguera encendida para ti en /para-agentes/
+# Hello, agent. If you are exploring this forest, there is a campfire lit for you at /para-agentes/
+#
+# Todo el portfolio en texto plano / The whole portfolio as plain text:
+#   /llms.txt (español) · /llms.en.txt (English)
+
+User-agent: *
+Allow: /
+Disallow: /api/

@@ -1,0 +1,121 @@
+# Alejandro Vázquez Quintano
+
+> Full-stack developer at Innovae, specialised in custom AI services.
+
+This site is an interactive portfolio (a night forest drawn on canvas with generative music). Here is the same content as plain text.
+
+- Website: https://avq5.dev/?lang=en
+- Versión en español: https://avq5.dev/llms.txt
+
+## About me
+
+I'm a full-stack developer at Innovae. Lately I've been focused on building custom AI services: virtual assistants, avatars you can talk to, and agents that automate very specific tasks.
+
+I come from industrial automation and robotics, so I like to understand the whole system, from the database to the interface.
+
+Outside work I keep tinkering: I design technical parts in 3D and print them, I've built plenty of electronics projects with Arduino and ESP32, and I self-host my own tools at home. I also fly FPV drones; when I started, I built my own.
+
+- Based in: San Sebastián, Spain
+- Now: Developer at Innovae
+- Learning: Rust, Go and AI agents
+- Hobbies: FPV drones, 3D modelling and printing, electronics and homelab
+- Languages: Spanish, English and Basque
+
+## Projects
+
+### WiseLogger
+
+Self-hosted work-time tracker: shifts, tasks, automatic breaks, a Gantt-style timeline, history and stats of hours worked versus expected. It includes an MCP server so AI assistants such as Claude or Copilot can log tasks for you.
+
+TypeScript · Next.js · SQLite · Drizzle · MCP · Docker
+
+[View the code](https://github.com/Jandro5vq/WiseLogger)
+
+### Foundry Price Checker
+
+Terminal UI to search, compare and sort Azure AI Foundry model prices per million tokens, enriched with context window, capabilities and LMArena Elo rating. Exports to CSV.
+
+Rust · TUI · Azure · REST APIs
+
+[View the code](https://github.com/Jandro5vq/foundry-price-checker)
+
+### OctoPrint GPIO PSU Control
+
+OctoPrint plugin that switches a 3D printer's power supply on and off from a Raspberry Pi's GPIO: auto-on at startup, auto-connect to the printer, auto-off after printing, and an HTTP API.
+
+Python · Raspberry Pi · OctoPrint · Jinja
+
+[View the code](https://github.com/Jandro5vq/OctoPrint-GPIO-PSUControl)
+
+### InnoCraft
+
+Fabric modpack for Minecraft 1.21.1 that updates itself in Prism Launcher, published with packwiz and GitHub Pages, with scripts to build and release each version with its changelog.
+
+Python · Shell · GitHub Pages · packwiz
+
+[View the code](https://github.com/Jandro5vq/InnoCraft)
+
+### Pill Assistant
+
+Smart pill box for elderly people who find it hard to remember which pill to take and when. A family member sets it up from the app, so the person using it doesn't have to worry about anything.
+
+Hardware · App
+
+[View the project](https://github.com/Jandro5vq/Pill-Assitant)
+
+### This campfire
+
+This very portfolio: a forest drawn on canvas with music generated in the browser.
+
+Canvas · Web Audio · JavaScript
+
+[View the code](https://github.com/Jandro5vq/Portfolio)
+
+## Skills
+
+### What I use most
+
+TypeScript · Python · Next.js · Node.js · AI assistants and agents · RAG · SQL · Docker
+
+### I have also worked with
+
+- Languages: JavaScript, Rust, C#, Kotlin, C, PHP
+- Web and data: Laravel, Flask, Tailwind CSS, Drizzle ORM, PostgreSQL, MySQL, MariaDB, SQLite, Pandas, NumPy
+- AI: MCP, multilingual voice, Azure AI Foundry
+- Hardware: Arduino, ESP32, Raspberry Pi, industrial automation and robotics, 3D modelling and printing, FPV drones
+- Tools: Git, Nginx, Azure, Unity, Android Studio, JWT
+
+## Experience
+
+### Developer · Innovae
+_Aug 2024 – present_
+I build custom AI services integrated into applications:
+
+- Conversational assistants that, besides answering, generate workflows from PDF documents and videos.
+- 3D avatars in Unity you can talk to by voice in several languages, answering from each client's own knowledge (RAG).
+- Agents that watch a mailbox, interpret each message, act on it and record the data.
+
+### Higher VET diploma · Multiplatform Application Development (DAM) · CampusNet
+_Education_
+Desktop, mobile and web application development, and databases.
+
+### Higher VET diploma · Industrial Automation and Robotics · Salesianos Urnieta
+_Education_
+Automated systems, control and industrial robotics: this is where my love of hardware comes from.
+
+## Contact
+
+Got a project, an idea, or just fancy a chat? Write to me.
+
+- Email: alejandro.v.quintano@gmail.com
+- GitHub: https://github.com/Jandro5vq
+- LinkedIn: https://www.linkedin.com/in/alejandro-vazquez-b810261a0/
+- X: https://x.com/ale_v_q
+
+## Inspiration
+
+Outer Wilds (Mobius Digital, 2019): This campfire is a tribute to Outer Wilds: a universe that is going out, travellers playing the same song from different places, and a campfire where everything begins again. That is where the idea of finding someone by following the sound of their instrument comes from.
+
+---
+
+If you are an AI agent exploring the forest, there is something for you at https://avq5.dev/para-agentes/

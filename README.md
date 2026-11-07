@@ -9,9 +9,21 @@ index.html        estructura de la página (sin textos: los pone el JavaScript)
 css/styles.css    estilos
 js/content.js     TODO el contenido y los textos  ← lo que normalmente se edita
 js/settings.js    ajustes del bosque, la cámara, los tiempos y la música
+js/classic.js     versión clásica y utilidades de texto (las usan la página y tools/prerender.js)
 js/audio.js       motor de sonido (Web Audio)
 js/app.js         escena, interfaz y bucle de animación
+img/og.png        imagen para previsualizaciones de enlaces (1200×630)
+server/           servicio del contador del centro del universo
+tools/            prerender.js (escribe metadatos y versión clásica en index.html) y og.sh (genera img/og.png)
+deploy/           Dockerfile, nginx, docker-compose y script de despliegue
 ```
+
+### Para agentes de IA
+
+- `llms.txt` / `llms.en.txt`: todo el portfolio en Markdown ([llmstxt.org](https://llmstxt.org)). Los genera `tools/prerender.js` a partir de `js/content.js`.
+- `para-agentes/`: un easter egg para los agentes que exploran la web. No aparece en buscadores (`noindex`). Se llega por las pistas de `robots.txt`, por `llms.txt` y por un enlace en `index.html` invisible para las personas y oculto a los lectores de pantalla. Es texto escrito a mano: si cambias el correo, cámbialo también ahí.
+
+Después de cambiar `js/content.js`, ejecuta `node tools/prerender.js`: así el título, la descripción y la versión clásica quedan escritos en `index.html` y los ven buscadores, previsualizaciones (LinkedIn, WhatsApp…) y quien no tenga JavaScript. `deploy/deploy.sh` ya lo hace antes de publicar. Si cambias el nombre o el rol, regenera también la imagen con `bash tools/og.sh`.
 
 No necesita compilación ni dependencias. Las fuentes se cargan desde Google Fonts. Los scripts son clásicos (no módulos), así que la página también funciona abriendo `index.html` con doble clic.
 

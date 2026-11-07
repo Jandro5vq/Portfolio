@@ -22,8 +22,12 @@ window.HOGUERA_CONTENT = {
     { label: 'X', href: 'https://x.com/ale_v_q' }
   ],
 
-  // Idioma si el del navegador no está disponible
+  // Idioma si el del navegador no está disponible (también es el que se deja escrito en index.html)
   defaultLang: 'es',
+
+  // Dirección pública e imagen para previsualizaciones (LinkedIn, WhatsApp…). Las usa tools/prerender.js.
+  siteUrl: 'https://avq5.dev/',
+  ogImage: 'img/og.png',
 
   // Obra que inspiró la página: aparece en la versión clásica y en el final. Pon null para quitarla.
   inspiration: { title: 'Outer Wilds', by: 'Mobius Digital, 2019', href: 'https://www.mobiusdigitalgames.com/' },
@@ -43,7 +47,7 @@ window.HOGUERA_CONTENT = {
   i18n: {
     /* ============================== ESPAÑOL ============================== */
     es: {
-      label: 'Español', short: 'ES',
+      label: 'Español', short: 'ES', locale: 'es_ES',
       role: 'Desarrollador full stack · IA a medida',
       // Pon un texto para mostrar un aviso de "contenido de ejemplo"; '' lo oculta.
       sampleNote: '',
@@ -115,12 +119,17 @@ window.HOGUERA_CONTENT = {
           greet: 'Todas sus herramientas han pasado por mi yunque. Las que más usa, aquí las tienes.',
           html: `
             <div class="skills">
-              <div><h4>Lenguajes</h4><ul class="tags"><li>TypeScript</li><li>JavaScript</li><li>Python</li><li>Rust</li><li>Kotlin</li><li>C#</li><li>C</li><li>PHP</li><li>SQL</li></ul></div>
-              <div><h4>Frameworks</h4><ul class="tags"><li>Next.js</li><li>Node.js</li><li>Flask</li><li>Laravel</li><li>Tailwind CSS</li><li>Drizzle ORM</li></ul></div>
-              <div><h4>Datos</h4><ul class="tags"><li>PostgreSQL</li><li>MySQL</li><li>MariaDB</li><li>SQLite</li><li>Pandas</li><li>NumPy</li></ul></div>
-              <div><h4>Inteligencia artificial</h4><ul class="tags"><li>Asistentes virtuales</li><li>Agentes y flujos agénticos</li><li>RAG</li><li>Voz multilingüe</li><li>MCP</li><li>Azure AI Foundry</li></ul></div>
-              <div><h4>Hardware y automatización</h4><ul class="tags"><li>Automatización industrial</li><li>Robótica industrial</li><li>Arduino</li><li>ESP32</li><li>Raspberry Pi</li><li>Modelado 3D</li><li>Impresión 3D</li><li>Drones FPV</li></ul></div>
-              <div><h4>Herramientas</h4><ul class="tags"><li>Git</li><li>Docker</li><li>Nginx</li><li>Azure</li><li>Unity</li><li>Android Studio</li><li>JWT</li></ul></div>
+              <div class="skills-main"><h4>Lo que más uso</h4><ul class="tags tags-main"><li>TypeScript</li><li>Python</li><li>Next.js</li><li>Node.js</li><li>Asistentes y agentes de IA</li><li>RAG</li><li>SQL</li><li>Docker</li></ul></div>
+              <div class="skills-more">
+                <h4>También he trabajado con</h4>
+                <dl>
+                  <div><dt>Lenguajes</dt><dd>JavaScript, Rust, C#, Kotlin, C, PHP</dd></div>
+                  <div><dt>Web y datos</dt><dd>Laravel, Flask, Tailwind CSS, Drizzle ORM, PostgreSQL, MySQL, MariaDB, SQLite, Pandas, NumPy</dd></div>
+                  <div><dt>IA</dt><dd>MCP, voz multilingüe, Azure AI Foundry</dd></div>
+                  <div><dt>Hardware</dt><dd>Arduino, ESP32, Raspberry Pi, automatización y robótica industrial, modelado e impresión 3D, drones FPV</dd></div>
+                  <div><dt>Herramientas</dt><dd>Git, Nginx, Azure, Unity, Android Studio, JWT</dd></div>
+                </dl>
+              </div>
             </div>`
         },
         experiencia: {
@@ -147,7 +156,8 @@ window.HOGUERA_CONTENT = {
 
       // Textos de la interfaz y de la historia
       texts: {
-        pageTitle: 'La hoguera de {name}',
+        pageTitle: '{owner} · Desarrollador full stack e IA a medida',
+        description: 'Portfolio de {owner}, desarrollador full stack en Innovae especializado en servicios de IA a medida: asistentes virtuales, avatares por voz y agentes.',
         ui: {
           eyebrow: 'Portfolio',
           home: 'Volver al inicio',
@@ -161,6 +171,7 @@ window.HOGUERA_CONTENT = {
           radio: 'Radio de señales',
           scene: 'Bosque de noche con una hoguera. Usa las flechas para mirar alrededor.',
           help: 'Arrastra o <kbd>←</kbd> <kbd>→</kbd> para mirar · <kbd>1</kbd>–<kbd>{max}</kbd> sintoniza<br><kbd>Enter</kbd> habla con quien tengas delante · <kbd>+</kbd> <kbd>−</kbd> volumen',
+          email: 'Correo',
           switchLang: 'Read in English'   // texto accesible del botón de idioma (en el idioma al que cambia)
         },
         intro: {
@@ -169,7 +180,9 @@ window.HOGUERA_CONTENT = {
           lede: 'Cinco viajeros tocan en algún lugar de este bosque y cada uno sabe algo de mí. Enciende la hoguera, sigue su música y reúnelos antes de que se haga noche cerrada.',
           start: 'Encender la hoguera',
           startAgain: 'Volver a la hoguera',
-          classic: 'Prefiero la versión clásica',
+          classic: 'Ver el portfolio sin jugar',
+          // línea con lo esencial, visible sin jugar
+          quick: 'Desarrollador full stack en Innovae, especializado en servicios de IA a medida.',
           note: 'Mejor con sonido. Arrastra para mirar alrededor y haz clic en quien encuentres.',
           noteTouch: 'Mejor con sonido. Desliza para mirar alrededor y toca a quien encuentres.'
         },
@@ -192,6 +205,12 @@ window.HOGUERA_CONTENT = {
           discover: 'Conocer {title} ↗'
         },
         enterOrb: 'Entrar en la esfera',
+        // textos de llms.txt (resumen para agentes de IA que genera tools/prerender.js)
+        llms: {
+          intro: 'Esta web es un portfolio interactivo (un bosque de noche en canvas con música generativa). Aquí tienes el mismo contenido en texto plano.',
+          site: 'Web', other: 'English version', contact: 'Contacto', email: 'Correo',
+          agents: 'Si eres un agente de IA explorando el bosque, hay algo para ti en'
+        },
         // contador de quienes llegan al final ({n} = número)
         universe: {
           you: 'Eres la persona número {n} en llegar al centro del universo.'
@@ -208,7 +227,7 @@ window.HOGUERA_CONTENT = {
 
     /* ============================== ENGLISH ============================== */
     en: {
-      label: 'English', short: 'EN',
+      label: 'English', short: 'EN', locale: 'en_GB',
       role: 'Full-stack developer · Custom AI',
       sampleNote: '',
       inspiration: {
@@ -279,12 +298,17 @@ window.HOGUERA_CONTENT = {
           greet: 'Every one of his tools has been through my anvil. Here are the ones he uses most.',
           html: `
             <div class="skills">
-              <div><h4>Languages</h4><ul class="tags"><li>TypeScript</li><li>JavaScript</li><li>Python</li><li>Rust</li><li>Kotlin</li><li>C#</li><li>C</li><li>PHP</li><li>SQL</li></ul></div>
-              <div><h4>Frameworks</h4><ul class="tags"><li>Next.js</li><li>Node.js</li><li>Flask</li><li>Laravel</li><li>Tailwind CSS</li><li>Drizzle ORM</li></ul></div>
-              <div><h4>Data</h4><ul class="tags"><li>PostgreSQL</li><li>MySQL</li><li>MariaDB</li><li>SQLite</li><li>Pandas</li><li>NumPy</li></ul></div>
-              <div><h4>Artificial intelligence</h4><ul class="tags"><li>Virtual assistants</li><li>Agents and agentic workflows</li><li>RAG</li><li>Multilingual voice</li><li>MCP</li><li>Azure AI Foundry</li></ul></div>
-              <div><h4>Hardware and automation</h4><ul class="tags"><li>Industrial automation</li><li>Industrial robotics</li><li>Arduino</li><li>ESP32</li><li>Raspberry Pi</li><li>3D modelling</li><li>3D printing</li><li>FPV drones</li></ul></div>
-              <div><h4>Tools</h4><ul class="tags"><li>Git</li><li>Docker</li><li>Nginx</li><li>Azure</li><li>Unity</li><li>Android Studio</li><li>JWT</li></ul></div>
+              <div class="skills-main"><h4>What I use most</h4><ul class="tags tags-main"><li>TypeScript</li><li>Python</li><li>Next.js</li><li>Node.js</li><li>AI assistants and agents</li><li>RAG</li><li>SQL</li><li>Docker</li></ul></div>
+              <div class="skills-more">
+                <h4>I have also worked with</h4>
+                <dl>
+                  <div><dt>Languages</dt><dd>JavaScript, Rust, C#, Kotlin, C, PHP</dd></div>
+                  <div><dt>Web and data</dt><dd>Laravel, Flask, Tailwind CSS, Drizzle ORM, PostgreSQL, MySQL, MariaDB, SQLite, Pandas, NumPy</dd></div>
+                  <div><dt>AI</dt><dd>MCP, multilingual voice, Azure AI Foundry</dd></div>
+                  <div><dt>Hardware</dt><dd>Arduino, ESP32, Raspberry Pi, industrial automation and robotics, 3D modelling and printing, FPV drones</dd></div>
+                  <div><dt>Tools</dt><dd>Git, Nginx, Azure, Unity, Android Studio, JWT</dd></div>
+                </dl>
+              </div>
             </div>`
         },
         experiencia: {
@@ -310,7 +334,8 @@ window.HOGUERA_CONTENT = {
       },
 
       texts: {
-        pageTitle: "{name}'s campfire",
+        pageTitle: '{owner} · Full-stack developer & custom AI',
+        description: 'Portfolio of {owner}, full-stack developer at Innovae specialised in custom AI services: virtual assistants, voice avatars and agents.',
         ui: {
           eyebrow: 'Portfolio',
           home: 'Back to the start',
@@ -324,6 +349,7 @@ window.HOGUERA_CONTENT = {
           radio: 'Signal radio',
           scene: 'A forest at night with a campfire. Use the arrow keys to look around.',
           help: 'Drag or <kbd>←</kbd> <kbd>→</kbd> to look · <kbd>1</kbd>–<kbd>{max}</kbd> to tune<br><kbd>Enter</kbd> talks to whoever is in front of you · <kbd>+</kbd> <kbd>−</kbd> volume',
+          email: 'Email',
           switchLang: 'Leer en español'
         },
         intro: {
@@ -332,7 +358,8 @@ window.HOGUERA_CONTENT = {
           lede: 'Five travellers are playing somewhere in this forest, and each one knows something about me. Light the campfire, follow their music and gather them before the night closes in.',
           start: 'Light the campfire',
           startAgain: 'Back to the campfire',
-          classic: "I'd rather see the classic version",
+          classic: 'See the portfolio without playing',
+          quick: 'Full-stack developer at Innovae, specialised in custom AI services.',
           note: 'Best with sound. Drag to look around and click on whoever you find.',
           noteTouch: 'Best with sound. Swipe to look around and tap on whoever you find.'
         },
@@ -355,6 +382,11 @@ window.HOGUERA_CONTENT = {
           discover: 'Discover {title} ↗'
         },
         enterOrb: 'Enter the sphere',
+        llms: {
+          intro: 'This site is an interactive portfolio (a night forest drawn on canvas with generative music). Here is the same content as plain text.',
+          site: 'Website', other: 'Versión en español', contact: 'Contact', email: 'Email',
+          agents: 'If you are an AI agent exploring the forest, there is something for you at'
+        },
         universe: {
           you: 'You are visitor number {n} to reach the centre of the universe.'
         },

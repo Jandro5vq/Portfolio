@@ -9,11 +9,14 @@ HOST="${DEPLOY_HOST:-root@avq5.dev}"
 DIR=/docker/portfolio
 cd "$(dirname "$0")/.."
 
+echo "→ Escribiendo la versión clásica y los metadatos en index.html…"
+node tools/prerender.js
+
 echo "→ Empaquetando y subiendo a $HOST…"
 STAGE=$(mktemp -d)
 trap 'rm -rf "$STAGE"' EXIT
 mkdir -p "$STAGE/site"
-cp -r index.html css js "$STAGE/site/"
+cp -r index.html css js img robots.txt llms*.txt para-agentes "$STAGE/site/"
 cp deploy/Dockerfile deploy/nginx.conf deploy/docker-compose.yml "$STAGE/"
 cp -r server "$STAGE/server"
 tar -C "$STAGE" -czf - . | ssh "$HOST" "rm -rf $DIR.new && mkdir -p $DIR.new && tar -xzf - -C $DIR.new"

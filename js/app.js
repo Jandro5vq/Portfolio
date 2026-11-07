@@ -8,10 +8,11 @@ const SET = window.HOGUERA_SETTINGS;
 const AudioEng = window.HogueraAudio;
 
 /* ---------- idioma ----------
-   CONFIG = datos comunes + los del idioma activo; TX = textos de la interfaz.
-   Al cambiar de idioma se reemplazan y se vuelve a pintar el texto, sin recargar ni perder el progreso. */
+   CONFIG = datos comunes + los del idioma activo; TX = textos de la interfaz; I18N = utilidades de texto
+   del idioma (js/classic.js). Al cambiar de idioma se reemplazan y se vuelve a pintar el texto,
+   sin recargar ni perder el progreso. */
 const LANGS = Object.keys(BASE.i18n);
-let LANG = '', CONFIG = BASE, TX = null;
+let LANG = '', CONFIG = BASE, TX = null, I18N = null;
 function pickLang(){
   const ok = (l) => (l && BASE.i18n[l] ? l : null);
   let fromUrl = null, saved = null;
@@ -21,13 +22,9 @@ function pickLang(){
   return ok(fromUrl) || ok(saved) || fromBrowser || ok(BASE.defaultLang) || LANGS[0];
 }
 function setLangData(lang){
-  const L = BASE.i18n[lang];
-  LANG = lang; TX = L.texts;
-  CONFIG = Object.assign({}, BASE, {
-    role: L.role, sampleNote: L.sampleNote || '',
-    inspiration: BASE.inspiration ? Object.assign({}, BASE.inspiration, L.inspiration) : null
-  });
-  for (const fr of BASE.friends) Object.assign(fr, L.friends[fr.id]);
+  I18N = window.HogueraClassic.forLang(BASE, lang);
+  LANG = lang; TX = I18N.TX; CONFIG = I18N.cfg;
+  for (const fr of BASE.friends) Object.assign(fr, I18N.L.friends[fr.id]);
 }
 setLangData(pickLang());
 
@@ -42,15 +39,10 @@ function mulberry32(a){ return function(){ a |= 0; a = a + 0x6D2B79F5 | 0; let t
 const media = (q) => !!(window.matchMedia && matchMedia(q).matches);
 const reduced = media('(prefers-reduced-motion: reduce)');
 const coarse = media('(pointer: coarse)');
-// Sustituye {clave} por su valor; {name} y {owner} siempre están disponibles
-const tpl = (s, vars = {}) => String(s).replace(/\{(\w+)\}/g, (m, k) => k in vars ? vars[k] : k === 'name' ? CONFIG.firstName : k === 'owner' ? CONFIG.owner : m);
-
-function contactHTML(){
-  const e = esc(CONFIG.email);
-  return `<div class="email-row"><a class="email" href="mailto:${e}">${e}</a><button class="btn copy" type="button" data-copy="${e}">${esc(TX.copy.idle)}</button></div>
-    <ul class="linklist">${CONFIG.links.map(l => `<li><a class="btn" href="${esc(l.href)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a></li>`).join('')}</ul>`;
-}
-const fill = (s) => tpl(s).replace('{{contact}}', contactHTML());
+// Utilidades de texto del idioma activo (definidas en js/classic.js)
+const tpl = (s, vars) => I18N.tpl(s, vars);
+const contactHTML = () => I18N.contactHTML();
+const fill = (s) => I18N.fill(s);
 
 /* ---------- referencias del DOM (se buscan una sola vez) ---------- */
 const el = {
@@ -199,6 +191,12 @@ function renderLanguage(){
   el.introTitle.innerHTML = `${esc(TX.intro.title)} <span class="out" aria-label="${esc(TX.intro.titleFade)}">${
     Array.from(TX.intro.titleFade).map((ch, i) => ch === ' ' ? ' ' : `<span aria-hidden="true" style="animation-delay:${1.2 + i * 0.28}s">${esc(ch)}</span>`).join('')}</span>`;
   el.introLede.textContent = tpl(TX.intro.lede);
+  // lo esencial sin jugar: quién eres y cómo contactarte
+  $('#intro-quick').innerHTML = `<p>${esc(tpl(TX.intro.quick))}</p><ul class="quick-links">${
+    CONFIG.links.map(l => `<li><a href="${esc(l.href)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a></li>`).join('')
+  }<li><a href="mailto:${esc(CONFIG.email)}">${esc(TX.ui.email)}</a></li></ul>`;
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc && TX.description) metaDesc.content = tpl(TX.description);
   el.introNote.textContent = coarse ? TX.intro.noteTouch : TX.intro.note;
   el.start.textContent = foundOrder.length ? TX.intro.startAgain : TX.intro.start;
   el.startClassic.textContent = TX.intro.classic;
@@ -371,25 +369,7 @@ el.vol.addEventListener('input', () => { if (AudioEng.muted && +el.vol.value > 0
 let classicBuilt = false;
 function buildClassic(){
   if (classicBuilt) return; classicBuilt = true;
-  const sections = FRIENDS.map(fr => `
-    <section class="classic-section content" id="${esc(fr.id)}" style="--c:${fr.color}">
-      <h3>${esc(fr.section)}</h3>
-      <p class="teller">${esc(tpl(TX.classic.teller, { friend: fr.name, instrument: fr.instrument }))}</p>
-      ${fill(fr.html)}
-    </section>`).join('');
-  const ins = CONFIG.inspiration;
-  const inspiration = ins ? `
-    <section class="classic-section content inspiration" id="inspiracion" style="--c:var(--ember)">
-      <h3>${esc(TX.classic.inspiration)}</h3>
-      <p class="teller">${esc(ins.title)} · ${esc(ins.by)}</p>
-      <p>${esc(ins.text)}</p>
-      ${ins.note ? `<p class="muted">${esc(ins.note)}</p>` : ''}
-      <a class="btn" href="${esc(ins.href)}" target="_blank" rel="noopener">${esc(tpl(TX.classic.discover, { title: ins.title }))}</a>
-    </section>` : '';
-  el.classicInner.innerHTML = `
-    <header><h1><a class="home-link" href="./" title="${esc(TX.ui.home)}">${esc(CONFIG.owner)}</a></h1><p class="role">${esc(CONFIG.role)}</p></header>
-    ${CONFIG.sampleNote ? `<p class="sample" style="margin-top:24px">${esc(CONFIG.sampleNote)}</p>` : ''}
-    ${sections}${inspiration}`;
+  el.classicInner.innerHTML = I18N.classicHTML(FRIENDS);
 }
 function openClassic(){ buildClassic(); el.classic.hidden = false; el.classicClose.focus(); }
 function closeClassic(){ el.classic.hidden = true; }

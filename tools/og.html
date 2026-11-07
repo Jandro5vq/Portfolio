@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!-- Plantilla de la imagen para previsualizaciones (img/og.png, 1200×630).
+     Se captura con: bash tools/og.sh -->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Martian+Mono:wght@400;600&display=block" rel="stylesheet">
+<style>
+  html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:#05070d}
+  body{position:relative;font-family:'Martian Mono',monospace;color:#efe6d6}
+  /* cielo, bosque y hoguera, en la misma paleta que la web */
+  .sky{position:absolute;inset:0;background:linear-gradient(#02040a 0%,#0b1226 55%,#1a2242 100%)}
+  .glow{position:absolute;left:870px;top:420px;width:620px;height:620px;transform:translate(-50%,-50%);
+    background:radial-gradient(circle,rgba(255,150,60,.55) 0%,rgba(255,120,40,.18) 30%,rgba(255,120,40,0) 62%)}
+  .fire{position:absolute;left:870px;top:448px;width:60px;height:86px;transform:translate(-50%,-50%);
+    background:radial-gradient(ellipse 50% 60% at 50% 65%,#fff3d0 0%,#ffb050 35%,rgba(255,90,30,.0) 75%);border-radius:50% 50% 45% 45%/60% 60% 40% 40%}
+  svg{position:absolute;left:0;bottom:0}
+  .stars i{position:absolute;width:2px;height:2px;background:#e4eaff;border-radius:1px}
+  .text{position:absolute;left:84px;top:118px;width:640px}
+  small{display:block;font-size:16px;letter-spacing:.24em;text-transform:uppercase;color:#8e94a8}
+  h1{margin:22px 0 22px;font:400 68px/1.02 'Gloock',serif;letter-spacing:-.01em}
+  p{margin:0;font-size:21px;line-height:1.5;color:#ff9b42}
+  .url{position:absolute;left:84px;bottom:64px;font-size:18px;letter-spacing:.06em;color:#9fd8ff}
+</style>
+</head>
+<body>
+  <div class="sky"></div>
+  <div class="stars" id="stars"></div>
+  <div class="glow"></div>
+  <svg width="1200" height="260" viewBox="0 0 1200 260" aria-hidden="true">
+    <path fill="#0f1931" d="M0 120 L60 70 L90 110 L140 40 L200 115 L260 60 L330 120 L400 75 L470 118 L560 52 L640 116 L720 66 L790 120 L860 80 L940 118 L1010 58 L1090 112 L1150 70 L1200 100 L1200 260 L0 260Z"/>
+    <path fill="#070d1a" d="M0 170 L50 110 L100 168 L170 92 L240 170 L300 120 L380 172 L450 100 L530 174 L1010 174 L1080 104 L1140 168 L1200 120 L1200 260 L0 260Z"/>
+    <path fill="#04070f" d="M0 260 L0 210 Q600 190 1200 210 L1200 260Z"/>
+  </svg>
+  <div class="fire"></div>
+  <div class="text">
+    <small>Portfolio</small>
+    <h1>Alejandro Vázquez Quintano</h1>
+    <p>Desarrollador full stack · IA a medida</p>
+  </div>
+  <div class="url">avq5.dev</div>
+<script>
+  // estrellas deterministas (misma imagen cada vez)
+  let a = 7; const r = () => (a = (a * 9301 + 49297) % 233280) / 233280;
+  const s = document.getElementById('stars');
+  for (let i = 0; i < 140; i++) { const e = document.createElement('i'); e.style.left = r() * 1200 + 'px'; e.style.top = r() * 330 + 'px'; e.style.opacity = .3 + r() * .7; s.appendChild(e); }
+</script>
+</body>
+</html>
