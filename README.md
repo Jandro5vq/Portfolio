@@ -73,6 +73,15 @@ El script sube `index.html`, `css/` y `js/` a `/docker/portfolio` en el servidor
 ssh root@avq5.dev "cd /docker && mv portfolio portfolio.bad && mv portfolio.prev portfolio && cd portfolio && docker compose -p portfolio up -d --build"
 ```
 
+### Contador del centro del universo
+
+Al final, cada visitante ve qué número de persona es en llegar al centro del universo. La cuenta la lleva un servicio mínimo en Node, sin dependencias (`server/server.js`), en su propio contenedor (`portfolio-contador`). Traefik le envía `avq5.dev/api/…` y el número se guarda en el volumen `portfolio_contador-data`, que se conserva entre despliegues.
+
+- `GET /api/universe` devuelve el total y `POST /api/universe` suma uno.
+- Cada navegador cuenta una sola vez (lo recuerda). El servidor, además, cuenta como mucho una vez cada 12 h por IP. Las IP no se guardan en disco.
+- En local (sin el servicio) el número simplemente no aparece. Se desactiva con `counter: null` en `js/settings.js`.
+- Para ver la cuenta: `curl https://avq5.dev/api/universe`.
+
 El nginx sirve los archivos con `Cache-Control: no-cache`: el navegador los guarda, pero comprueba en cada visita si han cambiado, así que los cambios se ven al momento.
 
 Como son archivos estáticos, también vale cualquier otro hosting (GitHub Pages, Netlify, Cloudflare Pages…).

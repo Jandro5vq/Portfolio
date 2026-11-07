@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Publica la web en avq5.dev: sube los archivos, reconstruye el contenedor "portfolio" y lo reinicia.
+# Publica la web en avq5.dev: sube los archivos, reconstruye los contenedores "portfolio" (web)
+# y "portfolio-contador" (API del contador) y los reinicia. La cuenta vive en un volumen y no se pierde.
 # Uso (desde la raíz del proyecto):  bash deploy/deploy.sh
 # La versión anterior queda en /docker/portfolio.prev por si hay que volver atrás.
 set -euo pipefail
@@ -14,6 +15,7 @@ trap 'rm -rf "$STAGE"' EXIT
 mkdir -p "$STAGE/site"
 cp -r index.html css js "$STAGE/site/"
 cp deploy/Dockerfile deploy/nginx.conf deploy/docker-compose.yml "$STAGE/"
+cp -r server "$STAGE/server"
 tar -C "$STAGE" -czf - . | ssh "$HOST" "rm -rf $DIR.new && mkdir -p $DIR.new && tar -xzf - -C $DIR.new"
 
 echo "→ Construyendo y cambiando de versión…"

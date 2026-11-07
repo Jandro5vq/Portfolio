@@ -45,6 +45,9 @@ window.HOGUERA_SETTINGS = {
     hudHz: 10              // refrescos por segundo del radio y de los niveles de audio
   },
 
+  // Contador de visitantes que llegan al centro del universo (servicio en server/). null lo desactiva.
+  counter: { endpoint: '/api/universe', timeoutMs: 4000 },
+
   timing: {
     fireIgnite: 1.6,       // s hasta que la hoguera arde del todo
     gatherReady: 8,        // s desde que estáis todos hasta que aparece la esfera

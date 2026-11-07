@@ -209,6 +209,7 @@ function renderLanguage(){
   el.endingTitle.textContent = TX.ending.title;
   el.endingText.textContent = tpl(TX.ending.text);
   el.again.textContent = TX.ending.again;
+  renderCounter();
   el.endingContact.innerHTML = contactHTML();
   el.endingCredit.innerHTML = '';
   if (CONFIG.inspiration) {
@@ -415,6 +416,35 @@ function enterOrb(){
   el.enter.hidden = true;
   setPhase('flash'); flashStart = performance.now() / 1000;
   AudioEng.finale();
+  countArrival();
+}
+
+/* ---------- contador de quienes llegan al centro del universo ----------
+   Cuenta una vez por navegador (se recuerda el número) y el servidor, además, una vez cada 12 h por IP.
+   Si el servicio no responde (por ejemplo, en local), simplemente no se muestra. */
+let myUniverseNumber = 0;
+try { myUniverseNumber = +localStorage.getItem('hoguera-universe') || 0; } catch (e) {}
+function renderCounter(){
+  const p = $('#ending-count');
+  p.hidden = !myUniverseNumber;
+  if (!myUniverseNumber) return;
+  let n = String(myUniverseNumber);
+  try { n = new Intl.NumberFormat(LANG).format(myUniverseNumber); } catch (e) {}
+  p.textContent = tpl(TX.universe.you, { n });
+}
+async function countArrival(){
+  if (myUniverseNumber || !SET.counter || !SET.counter.endpoint) { renderCounter(); return; }
+  try {
+    const opts = { method: 'POST', cache: 'no-store' };
+    if (window.AbortSignal && AbortSignal.timeout) opts.signal = AbortSignal.timeout(SET.counter.timeoutMs);
+    const r = await fetch(SET.counter.endpoint, opts);
+    const d = r.ok ? await r.json() : null;
+    if (!d || typeof d.count !== 'number' || d.count < 1) return;
+    myUniverseNumber = d.count;
+    // si esta IP ya contó hace poco, se muestra el total pero no se guarda: la próxima vez puede contar
+    if (d.counted) { try { localStorage.setItem('hoguera-universe', String(myUniverseNumber)); } catch (e) {} }
+    renderCounter();
+  } catch (e) {}
 }
 el.again.addEventListener('click', () => {
   el.ending.classList.remove('show'); setTimeout(() => { el.ending.hidden = true; }, 600);

@@ -17,6 +17,30 @@ services:
       - "traefik.http.routers.portfolio.tls.certresolver=letsencrypt"
       - "traefik.http.services.portfolio.loadbalancer.server.port=80"
 
+  # Contador de visitantes que llegan al centro del universo: recibe avq5.dev/api/…
+  # (Traefik da prioridad a la regla más larga, así que /api gana a la de la web).
+  contador:
+    build:
+      context: ./server
+    container_name: portfolio-contador
+    restart: unless-stopped
+    expose:
+      - "3000"
+    volumes:
+      - contador-data:/data
+    networks:
+      - traefik-proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.portfolio-api.rule=(Host(`avq5.dev`) || Host(`www.avq5.dev`)) && PathPrefix(`/api/`)"
+      - "traefik.http.routers.portfolio-api.entrypoints=websecure"
+      - "traefik.http.routers.portfolio-api.tls=true"
+      - "traefik.http.routers.portfolio-api.tls.certresolver=letsencrypt"
+      - "traefik.http.services.portfolio-api.loadbalancer.server.port=3000"
+
 networks:
   traefik-proxy:
     external: true
+
+volumes:
+  contador-data:

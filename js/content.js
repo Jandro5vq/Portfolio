@@ -192,6 +192,10 @@ window.HOGUERA_CONTENT = {
           discover: 'Conocer {title} ↗'
         },
         enterOrb: 'Entrar en la esfera',
+        // contador de quienes llegan al final ({n} = número)
+        universe: {
+          you: 'Eres la persona número {n} en llegar al centro del universo.'
+        },
         ending: {
           eyebrow: 'Mucho tiempo después',
           title: 'En algún lugar, alguien enciende otra hoguera.',
@@ -351,6 +355,9 @@ window.HOGUERA_CONTENT = {
           discover: 'Discover {title} ↗'
         },
         enterOrb: 'Enter the sphere',
+        universe: {
+          you: 'You are visitor number {n} to reach the centre of the universe.'
+        },
         ending: {
           eyebrow: 'A long time later',
           title: 'Somewhere, someone lights another campfire.',

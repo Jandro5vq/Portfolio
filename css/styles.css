@@ -190,6 +190,7 @@ body[data-phase="intro"] .top{z-index:11}
 .ending-card p{margin:0 auto 14px;color:#d8cfbf;line-height:1.55;max-width:48ch}
 .ending-card .email-row, .ending-card .linklist{justify-content:center}
 .ending-card .again{margin-top:18px}
+.ending-card .ending-count{margin:-4px auto 16px;font:400 11px/1.6 var(--mono);letter-spacing:.06em;color:var(--ember)}
 .ending-card .credit{margin:22px auto 0;font:300 10px/1.6 var(--mono);letter-spacing:.04em;color:var(--muted)}
 .ending-card .credit:empty{display:none}
 .content .muted{font-size:13px;color:var(--muted)}
