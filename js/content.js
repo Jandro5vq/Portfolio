@@ -106,6 +106,7 @@ window.HOGUERA_CONTENT = {
                 <header><span class="num">06</span><h4>Esta hoguera</h4></header>
                 <p>Este mismo portfolio: un bosque dibujado en canvas con música que se genera en el navegador.</p>
                 <ul class="tags"><li>Canvas</li><li>Web Audio</li><li>JavaScript</li></ul>
+                <a href="https://github.com/Jandro5vq/Portfolio">Ver el código →</a>
               </article>
             </div>`
         },
@@ -265,6 +266,7 @@ window.HOGUERA_CONTENT = {
                 <header><span class="num">06</span><h4>This campfire</h4></header>
                 <p>This very portfolio: a forest drawn on canvas with music generated in the browser.</p>
                 <ul class="tags"><li>Canvas</li><li>Web Audio</li><li>JavaScript</li></ul>
+                <a href="https://github.com/Jandro5vq/Portfolio">View the code →</a>
               </article>
             </div>`
         },
